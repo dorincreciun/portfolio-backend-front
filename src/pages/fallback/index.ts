@@ -1,1 +1,1 @@
-export { FallBackPage } from "./ui/FallBackPage"
+export { FallbackPage } from "./ui/FallBackPage"

@@ -1,20 +1,23 @@
+import { AdminLayout } from "@widgets/admin-layout"
 import { ProjectsList } from "./ProjectsList"
 
 export const ProjectsPage = () => {
     return (
-        <main className={"min-h-screen bg-neutral-900 text-white px-4 py-10"}>
-            <div className={"mx-auto flex w-full max-w-4xl flex-col gap-6"}>
-                <header className={"space-y-2"}>
-                    <h1 className={"text-2xl font-semibold tracking-tight"}>Proiecte finalizate</h1>
-                    <p className={"max-w-2xl text-sm text-neutral-400"}>
+        <AdminLayout>
+            <div className={"flex items-center justify-between gap-4 border-b border-neutral-700 pb-4"}>
+                <div>
+                    <h1 className={"text-xl font-semibold text-white"}>Proiecte finalizate</h1>
+                    <p className={"mt-1 text-sm text-neutral-400"}>
                         O selecție de proiecte finalizate, cu focus pe experiență de utilizare, performanță și claritate
                         în prezentarea informației.
                     </p>
-                </header>
+                </div>
+            </div>
 
+            <div className={"mt-6"}>
                 <ProjectsList />
             </div>
-        </main>
+        </AdminLayout>
     )
 }
 

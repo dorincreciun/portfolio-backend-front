@@ -1,4 +1,4 @@
-export const FallBackPage = () => {
+export const FallbackPage = () => {
     return (
         <main className={"grid min-h-screen place-items-center bg-neutral-900 px-6"}>
             <section className={"flex w-full max-w-sm flex-col items-center gap-4 text-center"}>

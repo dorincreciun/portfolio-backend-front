@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { Link, useLocation } from "react-router"
 import {
     BarChart3,
     Bell,
@@ -15,6 +16,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@shared/utils/cn"
+import { ROUTES, type AppRoute } from "@shared/const/routes"
 
 type AdminLayoutProps = {
     children: ReactNode
@@ -24,7 +26,7 @@ type NavItem = {
     label: string
     icon: React.ComponentType<{ className?: string }>
     badge?: string
-    active?: boolean
+    to?: AppRoute
 }
 
 type NavSection = {
@@ -33,15 +35,11 @@ type NavSection = {
 }
 
 const mainNavigation: NavSection = {
-    title: "Menu",
+    title: "Pagini",
     items: [
-        { label: "Dashboard", icon: LayoutDashboard },
-        { label: "Messages", icon: MessageCircle },
-        { label: "Tasks", icon: CheckSquare },
-        { label: "Emails", icon: Mail, badge: "4", active: true },
-        { label: "Notes", icon: FolderKanban },
-        { label: "Reports", icon: BarChart3 },
-        { label: "Automations", icon: Workflow },
+        { label: "Dashboard", icon: LayoutDashboard, to: ROUTES.CABINET },
+        { label: "Proiecte finalizate", icon: FolderKanban, to: ROUTES.CABINET_PROJECTS },
+        { label: "Proiecte publice", icon: FolderKanban, to: ROUTES.PROJECTS },
     ],
 }
 
@@ -181,41 +179,64 @@ type SidebarItemProps = {
 }
 
 const SidebarItem = ({ item }: SidebarItemProps) => {
+    const location = useLocation()
+    const isActive = item.to ? location.pathname === item.to : false
+
     const Icon = item.icon
 
     return (
         <li>
-            <button
-                type={"button"}
-                className={cn(
-                    "flex w-full items-center justify-between gap-2 rounded-2xl px-2.5 py-2 text-xs transition-colors",
-                    item.active
-                        ? "bg-emerald-400/20 text-emerald-300 shadow-sm ring-1 ring-emerald-400/40"
-                        : "text-neutral-300 hover:bg-neutral-700/50 hover:text-white",
-                )}
-            >
-                <span className={"flex items-center gap-2"}>
-                    <Icon
-                        className={cn(
-                            "h-4 w-4 shrink-0",
-                            item.active ? "text-emerald-300" : "text-neutral-400",
-                        )}
-                    />
-                    <span className={"font-medium"}>{item.label}</span>
-                </span>
-                {item.badge ? (
-                    <span
-                        className={cn(
-                            "rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
-                            item.active
-                                ? "bg-emerald-400 text-neutral-900"
-                                : "bg-neutral-600 text-neutral-300",
-                        )}
-                    >
-                        {item.badge}
+            {item.to ? (
+                <Link
+                    to={item.to}
+                    className={cn(
+                        "flex w-full items-center justify-between gap-2 rounded-2xl px-2.5 py-2 text-xs transition-colors",
+                        isActive
+                            ? "bg-emerald-400/20 text-emerald-300 shadow-sm ring-1 ring-emerald-400/40"
+                            : "text-neutral-300 hover:bg-neutral-700/50 hover:text-white",
+                    )}
+                >
+                    <span className={"flex items-center gap-2"}>
+                        <Icon
+                            className={cn(
+                                "h-4 w-4 shrink-0",
+                                isActive ? "text-emerald-300" : "text-neutral-400",
+                            )}
+                        />
+                        <span className={"font-medium"}>{item.label}</span>
                     </span>
-                ) : null}
-            </button>
+                    {item.badge ? (
+                        <span
+                            className={cn(
+                                "rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
+                                isActive
+                                    ? "bg-emerald-400 text-neutral-900"
+                                    : "bg-neutral-600 text-neutral-300",
+                            )}
+                        >
+                            {item.badge}
+                        </span>
+                    ) : null}
+                </Link>
+            ) : (
+                <button
+                    type={"button"}
+                    className={cn(
+                        "flex w-full items-center justify-between gap-2 rounded-2xl px-2.5 py-2 text-xs transition-colors",
+                        "text-neutral-300 hover:bg-neutral-700/50 hover:text-white",
+                    )}
+                >
+                    <span className={"flex items-center gap-2"}>
+                        <Icon className={"h-4 w-4 shrink-0 text-neutral-400"} />
+                        <span className={"font-medium"}>{item.label}</span>
+                    </span>
+                    {item.badge ? (
+                        <span className={"rounded-full px-1.5 py-0.5 text-[10px] font-semibold bg-neutral-600 text-neutral-300"}>
+                            {item.badge}
+                        </span>
+                    ) : null}
+                </button>
+            )}
         </li>
     )
 }

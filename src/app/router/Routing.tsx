@@ -1,7 +1,7 @@
 import { type IndexRouteObject, type NonIndexRouteObject, useRoutes } from "react-router"
 
 import { DefaultPage } from "@pages/default"
-import { FallBackPage } from "@pages/fallback"
+import { FallbackPage } from "@pages/fallback"
 import { CabinetPage } from "@pages/cabinet"
 import { CabinetProjectsPage } from "@pages/cabinet-projects"
 import { AdminLoginPage } from "@pages/admin-login"
@@ -22,7 +22,7 @@ type AppIndexRouteObject = Omit<IndexRouteObject, "children"> & {
 export type AppRouteObject = AppNonIndexRouteObject | AppIndexRouteObject
 
 const PublicRoutes: AppRouteObject[] = [
-    { path: ROUTES.FALLBACK, element: <FallBackPage /> },
+    { path: ROUTES.FALLBACK, element: <FallbackPage /> },
     { path: ROUTES.DEFAULT, element: <DefaultPage /> },
     { path: ROUTES.ADMIN_LOGIN, element: <AdminLoginPage /> },
     { path: ROUTES.PROJECTS, element: <ProjectsPage /> },

@@ -8,7 +8,8 @@ export const CabinetProjectsPage = () => {
                 <div>
                     <h1 className={"text-xl font-semibold text-white"}>Proiecte finalizate</h1>
                     <p className={"mt-1 text-sm text-neutral-400"}>
-                        Toate proiectele livrate, grupate într-o listă simplă pentru o vizualizare rapidă.
+                        O selecție de proiecte finalizate, cu focus pe experiență de utilizare, performanță și claritate
+                        în prezentarea informației.
                     </p>
                 </div>
             </div>

@@ -3,7 +3,9 @@ import { type IndexRouteObject, type NonIndexRouteObject, useRoutes } from "reac
 import { DefaultPage } from "@pages/default"
 import { FallBackPage } from "@pages/fallback"
 import { CabinetPage } from "@pages/cabinet"
+import { CabinetProjectsPage } from "@pages/cabinet-projects"
 import { AdminLoginPage } from "@pages/admin-login"
+import { ProjectsPage } from "@pages/projects"
 
 import { type AppRoute, ROUTES } from "@shared/const/routes"
 
@@ -23,9 +25,13 @@ const PublicRoutes: AppRouteObject[] = [
     { path: ROUTES.FALLBACK, element: <FallBackPage /> },
     { path: ROUTES.DEFAULT, element: <DefaultPage /> },
     { path: ROUTES.ADMIN_LOGIN, element: <AdminLoginPage /> },
+    { path: ROUTES.PROJECTS, element: <ProjectsPage /> },
 ]
 
-const PrivateRoutes: AppRouteObject[] = [{ path: ROUTES.CABINET, element: <CabinetPage /> }]
+const PrivateRoutes: AppRouteObject[] = [
+    { path: ROUTES.CABINET, element: <CabinetPage /> },
+    { path: ROUTES.CABINET_PROJECTS, element: <CabinetProjectsPage /> },
+]
 
 export const Routing = () => {
     return useRoutes([...PublicRoutes, ...PrivateRoutes])

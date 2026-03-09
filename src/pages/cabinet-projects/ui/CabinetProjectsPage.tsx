@@ -1,0 +1,22 @@
+import { AdminLayout } from "@widgets/admin-layout"
+import { ProjectsList } from "@pages/projects/ui/ProjectsList"
+
+export const CabinetProjectsPage = () => {
+    return (
+        <AdminLayout>
+            <div className={"flex items-center justify-between gap-4 border-b border-neutral-700 pb-4"}>
+                <div>
+                    <h1 className={"text-xl font-semibold text-white"}>Proiecte finalizate</h1>
+                    <p className={"mt-1 text-sm text-neutral-400"}>
+                        Toate proiectele livrate, grupate într-o listă simplă pentru o vizualizare rapidă.
+                    </p>
+                </div>
+            </div>
+
+            <div className={"mt-6"}>
+                <ProjectsList />
+            </div>
+        </AdminLayout>
+    )
+}
+
